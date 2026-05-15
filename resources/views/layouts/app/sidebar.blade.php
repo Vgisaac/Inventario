@@ -51,13 +51,16 @@
         <flux:spacer />
 
         <flux:dropdown position="top" align="end">
-            <flux:profile :initials="auth()->user()->initials()" icon-trailing="chevron-down" />
+            {{-- <flux:profile circle avatar="https://unavatar.io/x/calebporzio" /> --}}
+            <flux:sidebar.profile circle :avatar="auth()->user()->getAvatarUrl()" :initials="auth()->user()->initials()"
+                icon:trailing="chevrons-up-down" data-test="sidebar-menu-button" />
 
             <flux:menu>
                 <flux:menu.radio.group>
                     <div class="p-0 text-sm font-normal">
                         <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-                            <flux:avatar :name="auth()->user()->name" :initials="auth()->user()->initials()" />
+                            {{-- <flux:avatar circle src="https://unavatar.io/x/calebporzio" /> --}}
+                            <flux:avatar circle :src="auth()->user()->getAvatarUrl()" />
 
                             <div class="grid flex-1 text-start text-sm leading-tight">
                                 <flux:heading class="truncate">{{ auth()->user()->name }}</flux:heading>
@@ -70,6 +73,7 @@
                 <flux:menu.separator />
 
                 <flux:menu.radio.group>
+
                     <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>
                         {{ __('Settings') }}
                     </flux:menu.item>
@@ -97,6 +101,8 @@
     @endpersist
 
     @fluxScripts
+
+    @stack('js')
 </body>
 
 </html>
