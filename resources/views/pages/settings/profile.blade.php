@@ -37,8 +37,22 @@ new #[Title('Profile settings')] class extends Component {
      */
     public function updateProfileInformation(): void
     {
-        // Esta función se mantiene para compatibilidad, pero la lógica real
-        // ahora se maneja en ProfileController@update para el avatar
+        $user = Auth::user();
+
+        $validated = $this->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+        ]);
+
+        $user->fill($validated);
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
+
+        Flux::toast(text: __('Profile updated.'));
     }
 
     /**
