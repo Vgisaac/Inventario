@@ -1,11 +1,17 @@
 @php
     $groups = [
         'Platform' => [
+            // [
+            //     'name' => 'Dashboard',
+            //     'icon' => 'home',
+            //     'url' => route('dashboard'),
+            //     'current' => request()->routeIs('dashboard'),
+            // ],
             [
-                'name' => 'Dashboard',
+                'name' => 'Inventário',
                 'icon' => 'home',
-                'route' => 'dashboard',
-                'active' => request()->routeIs('admin.*'),
+                'url' => route('admin.inventario.index'),
+                'current' => request()->routeIs('admin.inventario.*'),
             ],
         ],
     ];
@@ -30,8 +36,8 @@
             @foreach ($groups as $group => $links)
                 <flux:sidebar.group :heading="__('Platform')" class="grid">
                     @foreach ($links as $link)
-                        <flux:sidebar.item :icon="$link['icon']" :href="route($link['route'])"
-                            :current="$link['active']" wire:navigate>
+                        <flux:sidebar.item :icon="$link['icon']" :href="$link['url']" :current="$link['current']"
+                            wire:navigate>
                             {{ __($link['name']) }}
                         </flux:sidebar.item>
                     @endforeach

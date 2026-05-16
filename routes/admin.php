@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Inventariocontroller;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'admin.index')->name('index');
+Route::resource('inventario', Inventariocontroller::class);
