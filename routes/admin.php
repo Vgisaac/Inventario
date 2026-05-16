@@ -2,4 +2,4 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/inventario', 'admin.index')->name('inventario');
+Route::view('/', 'admin.index')->name('index');
