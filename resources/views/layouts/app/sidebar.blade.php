@@ -5,7 +5,7 @@
                 'name' => 'Dashboard',
                 'icon' => 'home',
                 'route' => 'dashboard',
-                'active' => request()->routeIs('dashboard'),
+                'active' => request()->routeIs('admin.*'),
             ],
         ],
     ];

@@ -2,4 +2,4 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'admin.index')->name('dashboard');
+Route::view('/', 'admin.index')->name('index');
